@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<head>
+    <title>Spiral sort</title>
+
+    <link rel="stylesheet" href="css/nav.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/code.css" type="text/css">
+    <link rel="icon" href="gallery/spiral.png" type="image/x-icon">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/burger.js"></script>
+</head>
+<body>
+    <header class="navigation-bar">
+        <a href="index.html" class="logo"><img src="gallery/logo.png" alt="LOGO" class="logo"></a>
+        
+        <ul class="navigation-links">
+            <li><a href="index.html" class="nav-text">About</a></li>
+            <li><a href="functionality.html" class="nav-text">Functionality</a></li>
+            <li><a href="code.html" class="nav-text">Code</a></li>
+        </ul>
+        
+        <div onclick="location.href='download.html'" class="download-button">Download</div>
+
+        <div class="hamburger" onclick="hamburger_toggle(this)">
+            <div class="line1 line"></div>
+            <div class="line2 line"></div>
+            <div class="line3 line"></div>
+        </div>
+    </header>
+    <div id="top-navigation">
+        <ul class="top-navigation-links">
+            <li><a href="index.html" class="nav-text">About</a></li>
+            <li><a href="functionality.html" class="nav-text">Functionality</a></li>
+            <li><a href="code.html" class="nav-text">Code</a></li>
+            <li><div onclick="location.href='download.html'" class="top-download-button">Download</div></li>
+        </ul>
+    </div>
+    <div class="main">
+        <p>The first step to start implementing this algorithm would be to create a
+        <u>class</u> with the __init__ method which will be using attributes: points, 
+        rotation, start and visualize. Then we will assign them to <u>self</u> and determine
+        the direction of rotation as mentioned in <a href="functionality.html">Functionality</a>.</p>
+        <pre class="code-container">
+class spiral_sort():
+    def __init__(self,
+                 points=None,
+                 rotation=None,
+                 start=None,
+                 visualize=False):
+
+        self.points = list(set(points))
+        self.start = start
+        self.visualize = visualize
+
+        self.move = -1 if rotation=="left" else 1</pre>
+        <p>The idea goes that at the beginning the <u>object</u> is created and then 
+        the <u>sort</u> method is called, which will return a sorted list of given points 
+        (<i>Object.spiral_sort(kwargs).sort() ---> [(x,y), (x,y)]</i>).
+        For visualization, we can add a simple function that will create a <u>tkinter</u> 
+        window with a graphic illustration of a sorted set of points and lines connecting them.</p>
+        <pre class="code-container">
+    def sort(self) -> list:
+        self.create_spiral()
+
+        if self.visualize:
+            self.create_visual()
+
+        return self.sorted_points</pre>
+        <br>
+        <pre class="code-container">
+    def create_visual(self) -> None:
+        import tkinter
+        width = max(self.sorted_points, key=lambda point: point[0])[0]
+        height = max(self.sorted_points, key=lambda point: point[1])[1]
+    
+        canvas = tkinter.Canvas(width = width, height = height)
+        canvas.pack()
+    
+        for point in self.sorted_points:
+            canvas.create_oval(point[0]-3,
+                               point[1]-3,
+                               point[0]+3,
+                               point[1]+3,
+                               width = 0, 
+                               fill = "red")
+    
+        canvas.create_line(tuple(self.sorted_points),
+                           width = 2,
+                           fill = "green")</pre>
+        <p>In the <u>create_visual</u> we set the width to the largest <b>X</b> value 
+        of points and height to the largest <b>Y</b> value of points as there is
+        no need to have a bigger canvas for this illustration (if points have greater distances
+        between themselves it will obviously not work as expected and canvas will be extremely big).</p>
+        <p>Now let's create, the most important part, the method which will calculate and 
+        return the points in sorted order.</p>
+        <p>First, we create the function <u>create_spiral</u>, then we evaluate the starting point according 
+        to the user's choice. If no starting side was selected, the point closest to the upper 
+        side will be selected ("N").</p>
+        <p>The selected point is deleted from points chosen by the user because we are going 
+        to iterate through them in the next step.</p>
+        <pre class="code-container">
+    def create_spiral(self) -> None:
+        match self.start:
+            case "N":
+                first_point = min(self.points,
+                                  key=lambda point: point[1])
+                final_points = [(first_point[0]+self.move, first_point[1]),
+                                first_point]
+
+            case "S":
+                first_point = max(self.points,
+                                  key=lambda point: point[1])
+                final_points = [(first_point[0]-self.move, first_point[1]),
+                                first_point]
+
+            case "W":
+                first_point = min(self.points,
+                                  key=lambda point: point[0])
+                final_points = [(first_point[0], first_point[1]-self.move),
+                                first_point]
+
+            case "E":
+                first_point = max(self.points,
+                                  key=lambda point: point[0])
+                final_points = [(first_point[0], first_point[1]+self.move),
+                                first_point]
+
+            case _:
+                first_point = min(self.points,
+                                  key=lambda point: point[1])
+                final_points = [(first_point[0], 0),
+                                first_point]
+    
+        del self.points[self.points.index(first_point)]</pre>
+        <br>
+        <p>Now that we have our imaginary point at the first (0) position in list <u>final_points</u>
+        and the first point of given points at the second (1) position we can start comparing the 
+        <a href="https://en.wikipedia.org/wiki/Dot_product">angles</a> 
+        (always 2 endmost points + new) for each remaining point.
+        Obtained point is added to the <u>final_points</u> and deleted from <u>self.points</u> for 
+        use in the next cycle. At last, we delete the first point from final_points as it is an imaginary point
+        that does not belong to the spiral. Points in desired order are stored in list <u>self.sorted_points</u>
+        and returned by the <u>sort</u> function.</p>
+        <br>
+        <pre class="code-container">
+        for i in range(len(self.points)):
+            angle_point_dict = dict()
+            for point in self.points:
+                x1, y1 = point
+                x2, y2 = final_points[-1]
+                x3, y3 = final_points[-2]
+                u = (x2-x1, y2-y1)
+                v = (x2-x3, y2-y3)
+
+                formula = (u[0]*v[0]+u[1]*v[1])/(math.sqrt(u[0]**2+u[1]**2)*math.sqrt(v[0]**2+v[1]**2))
+                angle_point_dict[math.acos(formula)] = point
+
+            selected_angle = angle_point_dict[max(angle_point_dict)]
+            final_points.append(selected_angle)
+            del self.points[self.points.index(selected_angle)]
+
+        self.sorted_points = final_points[1:]</pre>
+        <br>
+        <p id="init-description-p"><b>__init__ description: </b></p>
+        <ul id="init-description-ul">
+            <li><p>points - ([X,Y], [X,Y]...)</p></li>
+            <li><p>rotation - "left"/"right"</p></li>
+            <li><p>start</p></li>
+            <ul id="sides">
+                <li><p>"N"-North</p></li>
+                <li><p>"S"-South</p></li>
+                <li><p>"W"-West</p></li>
+                <li><p>"E"-East</p></li>
+            </ul>
+            <li><p>visualize - True/False</p></li>
+        </ul>
+        <p>You can download the full code in <a href="download.html">Download</a>.</p>
+        <p>You are free to try script <a href="python_implementation/try_spiral.py">try_spiral.py</a> in 
+        <a href="download.html">Download</a> which is a graphical implementation in
+        which you can enter points manually and see them getting sorted by pressing 'Return-key'.</p>
+    </div>
+    <div class="main-bottom main">
+        <h2>You are welcome to contribute your knowledge/observations 
+        and report any mistakes/bugs/upgrades...</h2>
+    </div>
+    <footer>
+        <p>©Dávid Soliar</p>
+    </footer>
+</body>

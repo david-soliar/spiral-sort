@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <title>Spiral sort</title>
+
+    <link rel="stylesheet" href="css/nav.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="icon" href="gallery/spiral.png" type="image/x-icon">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/burger.js"></script>
+</head>
+<body>
+    <header class="navigation-bar">
+        <a href="index.html" class="logo"><img src="gallery/logo.png" alt="LOGO" class="logo"></a>
+        
+        <ul class="navigation-links">
+            <li><a href="index.html" class="nav-text">About</a></li>
+            <li><a href="functionality.html" class="nav-text">Functionality</a></li>
+            <li><a href="code.html" class="nav-text">Code</a></li>
+        </ul>
+        
+        <div onclick="location.href='download.html'" class="download-button">Download</div>
+
+        <div class="hamburger" onclick="hamburger_toggle(this)">
+            <div class="line1 line"></div>
+            <div class="line2 line"></div>
+            <div class="line3 line"></div>
+        </div>
+    </header>
+    <div id="top-navigation">
+        <ul class="top-navigation-links">
+            <li><a href="index.html" class="nav-text">About</a></li>
+            <li><a href="functionality.html" class="nav-text">Functionality</a></li>
+            <li><a href="code.html" class="nav-text">Code</a></li>
+            <li><div onclick="location.href='download.html'" class="top-download-button">Download</div></li>
+        </ul>
+    </div>
+    <div class="main-upper">
+        <h4>This project focuses on a coherent way of sorting a set of given points so that, 
+        when connected by a line in sorted order, they form a spiral-like object.</h4>
+        <br>
+        <h4>
+        For practical demonstration, we are going to use Python, and for visualization 
+        <a href="https://docs.python.org/3/library/tkinter.html" target="_blank">tkinter</a>
+        of the Python 
+        <a href="https://docs.python.org/3/library/" target="_blank"> stdlib</a>.
+        </h4>
+        <br>
+        <h3>Samples/results:</h3>
+    </div>
+    <div class="main-mid">
+        <div>
+            <img src="gallery_about/first_1.png" alt="">
+            <img src="gallery_about/first_2.png" alt="">
+            <p>[(654, 95), (377, 154), (279, 202), (189, 321), (94, 553), (298, 806), (555, 880), (717, 736), (879, 498), (797, 328), (636, 181), (340, 428), (269, 594), (482, 645), (724, 513), (536, 361), (496, 476)]</p>
+            <br>
+        </div>
+        <div>
+            <br>
+            <img src="gallery_about/second_1.png" alt="">
+            <img src="gallery_about/second_2.png" alt="">
+            <p>[(168, 159), (162, 726), (788, 758), (787, 160), (282, 278), (287, 588), (670, 596), (666, 280), (381, 366), (393, 510), (558, 512), (564, 367), (465, 447)]</p>
+            <br>
+        </div>
+        <div>
+            <br>
+            <img src="gallery_about/third_1.png" alt="">
+            <img src="gallery_about/third_2.png" alt="">
+            <p>[(224, 90), (131, 396), (100, 531), (100, 779), (155, 863), (596, 931), (779, 870), (906, 625), (889, 437), (854, 222), (747, 158), (616, 127), (364, 92), (229, 235), (206, 540), (232, 753), (291, 867), (555, 863), (823, 745), (776, 480), (726, 363), (444, 208), (353, 312), (270, 452), (251, 618), (416, 864), (666, 735), (726, 629), (747, 413), (568, 282), (472, 328), (438, 372), (318, 629), (394, 769), (594, 604), (671, 460), (589, 378), (506, 443), (397, 563), (479, 691)]</p>
+            <br>
+        </div>
+        <div>
+            <br>
+            <img src="gallery_about/fourth_1.png" alt="">
+            <img src="gallery_about/fourth_2.png" alt="">
+            <p>[(445, 71), (207, 137), (103, 429), (186, 679), (383, 868), (743, 853), (853, 701), (861, 469), (784, 220), (664, 162), (474, 161), (363, 199), (291, 274), (289, 478), (318, 638), (400, 725), (540, 765), (656, 757), (752, 629), (759, 414), (656, 298), (563, 277), (457, 310), (421, 404), (416, 549), (477, 619), (602, 629), (660, 539), (637, 390), (554, 375), (501, 442), (513, 530), (580, 542), (603, 463), (545, 449)]</p>
+            <br>
+        </div>
+        <div>
+            <br>
+            <img src="gallery_about/fifth_1.png" alt="">
+            <img src="gallery_about/fifth_2.png" alt="">
+            <p>[(445, 71), (207, 137), (103, 429), (186, 679), (383, 868), (743, 853), (853, 701), (861, 469), (784, 220), (664, 162), (474, 161), (363, 199), (291, 274), (289, 478), (318, 638), (400, 725), (540, 765), (656, 757), (752, 629), (759, 414), (656, 298), (563, 277), (457, 310), (421, 404), (416, 549), (477, 619), (602, 629), (660, 539), (637, 390), (554, 375), (501, 442), (513, 530), (580, 542), (603, 463), (545, 449)]</p>
+            <br>
+        </div>
+    </div>
+    <div class="main-bottom main-upper">
+        <ul type="circle">
+            <li>
+                <h4>These spirals were made using the <i>"right"</i> and <i>"N"</i> arguments, more in <a href="functionality.html">Functionality</a></h4>
+            </li>
+            <li>
+                <h4>The geometry of the canvas is 1000x1000</h4>
+            </li>
+            <li>
+                <h4>Points were entered manually</h4>
+            </li>
+        </ul>
+    </div>
+    <footer>
+        <p>©Dávid Soliar</p>
+    </footer>
+</body>

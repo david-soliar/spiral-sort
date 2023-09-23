@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <title>Spiral sort</title>
+
+    <link rel="stylesheet" href="css/nav.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/functionality.css" type="text/css">
+    <link rel="icon" href="gallery/spiral.png" type="image/x-icon">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/burger.js"></script>
+    </script>
+</head>
+<body>
+    <header class="navigation-bar">
+        <a href="index.html" class="logo"><img src="gallery/logo.png" alt="LOGO" class="logo"></a>
+        
+        <ul class="navigation-links">
+            <li><a href="index.html" class="nav-text">About</a></li>
+            <li><a href="functionality.html" class="nav-text">Functionality</a></li>
+            <li><a href="code.html" class="nav-text">Code</a></li>
+        </ul>
+        
+        <div onclick="location.href='download.html'" class="download-button">Download</div>
+
+        <div class="hamburger" onclick="hamburger_toggle(this)">
+            <div class="line1 line"></div>
+            <div class="line2 line"></div>
+            <div class="line3 line"></div>
+        </div>
+    </header>
+    <div id="top-navigation">
+        <ul class="top-navigation-links">
+            <li><a href="index.html" class="nav-text">About</a></li>
+            <li><a href="functionality.html" class="nav-text">Functionality</a></li>
+            <li><a href="code.html" class="nav-text">Code</a></li>
+            <li><div onclick="location.href='download.html'" class="top-download-button">Download</div></li>
+        </ul>
+    </div>
+    <div class="main">
+        <p>The principle of functionality consists of determining the starting point, 
+        choosing the direction of rotation of the resulting spiral, and calculating the angles 
+        between the given points.</p>
+        <br>
+        <p>Let the points be:</p>
+        <h2>[(455, 149), (159, 345), (161, 655), (467, 861), (762, 655), (760, 311), 
+        (451, 265), (295, 349), (284, 629), (466, 746), (628, 629), (609, 339), 
+        (452, 347), (349, 475), (466, 625), (567, 476), (455, 471)]</h2>
+        <br>
+        <p>...let's visualize the points...</p>
+        <img src="gallery_usage/only_points.png" alt="">
+        <p>For easier manipulation, we selected the point that is as close 
+        as possible to the top edge (y = 0) as our starting point <i>(start="N")</i>.</p>
+        <br>
+        <p>We then take the value on the x-axis of the selected point and create an
+        imaginary point with the position [x +1, y] (if we want the spiral to be clockwise,
+        <u>"left"</u> (-1) is used, for anticlockwise <u>"right"</u> (+1) is used).</p>
+        <img src="gallery_usage/imaginary_point.png" alt="">
+        <p>Now we connect the imaginary point with the starting point.</p>
+        <img src="gallery_usage/first_line.png" alt="">
+        <p>Afterwards, we calculate angles between the imaginary point, 
+        starting point, and every point from the remaining points. The point for which the angle is the biggest is the next point
+        belonging to the sorted list of points</p>
+        <img src="gallery_usage/calculating_second_point.png" alt="">
+        <p>The imaginary point is no longer needed, 2 main points now are first point and point with bigger angle comapared to others.</p>
+        <br>
+        <h2>We repeat this process until we have no points left.</h2>
+        <h2 id="imaginary-point-warning"><b>!</b> The imaginary point does not 
+        belong to the spiral and shall be deleted <b>!</b></h2>
+    </div>
+    <div class="connecting-points">
+        <h2>Anticlockwise</h2>
+        <h2>Clockwise</h2>
+        <img src="gallery_usage/anticlockwise_1.png" alt="">
+        <img src="gallery_usage/clockwise_1.png" alt="">            
+        <img src="gallery_usage/anticlockwise_2.png" alt="">
+        <img src="gallery_usage/clockwise_2.png" alt="">
+        <img src="gallery_usage/anticlockwise_3.png" alt="">
+        <img src="gallery_usage/clockwise_3.png" alt="">
+        <img src="gallery_usage/final_anticlockwise.png" alt="">
+        <img src="gallery_usage/final_clockwise.png" alt="">
+    </div>
+    <div class="main">
+        <p>In the <a href="download.html">attached code</a>, <b>"self.move"</b>, is
+        referring to the direction of connecting the points as mentioned above and it acquires value of either 1 or -1.</p>
+        <br>
+        <p>The direction is given by the progression of connections at the bottom (in this 
+        case we used canvas with a geometry of 1000x1000). Therefore the anticlockwise
+        direction is <b>"right"</b> and the clockwise direction is <b>"left"</b>. Examples:</p>
+    </div>
+    <div class="connecting-points">
+        <h2>Anticlockwise</h2>
+        <h2>Clockwise</h2>
+        <img src="gallery_usage/right.png" alt="">
+        <img src="gallery_usage/left.png" alt="">
+    </div>
+    <div class="main">
+        <h2>You are welcome to contribute your knowledge/observations 
+        and report any mistakes/bugs/upgrades...</h2>
+    </div>
+    <footer>
+        <p>©Dávid Soliar</p>
+    </footer>
+</body>
