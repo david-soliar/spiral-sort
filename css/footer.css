@@ -1,0 +1,14 @@
+footer {
+    display: grid;
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(18, 28, 31);
+    grid-template-columns: 1fr;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 1em;
+    color: aliceblue;
+    text-align: center;
+}

@@ -1,0 +1,210 @@
+body {
+    margin: 0;
+    background-color: rgb(25,36,40);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a:link, a:visited {
+    text-decoration:none;
+ }
+
+.navigation-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: rgb(25,36,40);
+    max-width: 100%;
+}
+
+.navigation-links {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+.nav-text {
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.1em;
+    font-weight: 600;
+    color: rgb(57,172,231);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: all 0.5s;
+}
+
+.nav-text:hover {
+    color: rgb(4, 108, 149);
+    text-shadow: rgb(141, 216, 251) 1px 0 1px;
+}
+
+.navigation-links li {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.logo {
+    text-decoration: none;
+    max-width: 350px;
+    margin: 5px;
+    margin-left: 2%;
+    transition: all 0.4s;
+}
+
+.download-button {
+    display: visible;
+    margin-right: 3vw;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.9em;
+    text-shadow: 0.5px 0.5px black;
+    font-weight: 700;
+    justify-self: end;
+    color: white;
+    padding: 10px;
+    padding-left: 45px;
+    padding-right: 45px;
+    border-style: none;
+    border-radius: 15px;
+    background-image: linear-gradient(95deg, rgb(4, 108, 149) 20%, rgb(53, 154, 205) 85%);
+    transition: all 0.3s;
+    transition-timing-function: linear;
+    box-shadow: none;
+}
+
+.download-button:hover {
+    box-shadow: 0 0 2px 2px rgb(141, 216, 251);
+}
+
+.hamburger {
+    display: none;
+    margin-right: 10px;
+    justify-self: end;
+}
+
+.line {
+    display: visible;
+    width: 36px;
+    height: 8px;
+    margin: 5px 0;
+    transition: 0.7s;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.lines-change .line1 {
+    transform: translate(0, 13px) rotate(-45deg)
+}
+
+.lines-change .line3 {
+    transform: translate(0, -13px) rotate(45deg)
+}
+
+.lines-change .line2 {
+    opacity: 0;
+}
+
+#top-navigation {
+    display: none;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 90vh;
+    background-color: rgb(25,36,40);
+    margin: 0;
+    padding: 0;
+    grid-template-rows: 1fr;
+}
+
+.top-navigation-links {
+    display: grid;
+    list-style: none;
+    grid-template-rows: 1fr;
+    row-gap: 10vh;
+    justify-items: center;
+    padding-inline-start: 0;
+}
+
+.top-download-button {
+    display: visible;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2.8em;
+    text-shadow: 0.5px 0.5px black;
+    font-weight: 700;
+    color: white;
+    padding: 10px;
+    padding-left: 45px;
+    padding-right: 45px;
+    border-style: none;
+    border-radius: 15px;
+    background-image: linear-gradient(95deg, rgb(4, 108, 149) 20%, rgb(53, 154, 205) 85%);
+    transition: all 0.3s;
+    transition-timing-function: linear;
+    box-shadow: none;
+}
+
+.top-download-button:hover {
+    box-shadow: 0 0 5px 5px rgb(141, 216, 251);
+}
+
+@media only screen and (max-width: 1440px) {
+    .logo {
+        max-width: 280px;
+        margin: 3px;
+    }
+    
+    .nav-text {
+        font-size: 1.7em;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .download-button {
+        font-size: 1.5em;
+        font-weight: 600;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .logo {
+        max-width: 250px;
+        margin: 2px;
+        justify-self: start;
+    }
+
+    .navigation-links {
+        display: none;
+    }
+
+    .download-button {
+        display: none;
+    }
+
+    .top-download-button {
+        display: visible;
+    }
+
+    .navigation-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .hamburger {
+        display: inline-block;
+    }
+
+    .nav-text {
+        font-size: 2.4em;
+        font-weight: 600;
+    }
+}
