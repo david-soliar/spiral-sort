@@ -67,11 +67,12 @@ h2 {
 
 @media only screen and (max-width: 980px) {
     .main {
-        max-width: 85vw;
+        max-width: 95vw;
     }
 
     .code-container {
         font-size: 2vw;
         padding: 3px;
+        width: 95vw;
     }
 }
