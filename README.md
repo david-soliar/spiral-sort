@@ -9,4 +9,4 @@
 </ul>
 <hr>
 <p>November/December 2022</p>
-<p>adjusted a little in March/April 2023 (grammar mistakes and other...)</p> 
+<p>adjusted a little in March/April 2023 (grammar mistakes, readability and other...)</p> 
