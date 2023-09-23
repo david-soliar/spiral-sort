@@ -59,6 +59,10 @@ h2 {
     margin-top: 1%;
 }
 
+pre {
+    overflow-x:hidden;
+}
+
 @media only screen and (max-width: 1440px) {
     .main {
         max-width: 800px;
