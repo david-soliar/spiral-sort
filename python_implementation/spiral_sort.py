@@ -1,5 +1,6 @@
 import math
 
+
 class spiral_sort():
     def __init__(self,
                  points=None,
@@ -11,7 +12,7 @@ class spiral_sort():
         self.start = start
         self.visualize = visualize
 
-        self.move = -1 if rotation=="left" else 1
+        self.move = -1 if (rotation == "left") else 1
 
     def sort(self) -> list:
         self.create_spiral()
@@ -20,7 +21,7 @@ class spiral_sort():
             self.create_visual()
 
         return self.sorted_points
-            
+
     def create_spiral(self) -> None:
         match self.start:
             case "N":
