@@ -9,6 +9,7 @@ canvas.create_text(500, 30, text="Press '<Return>' to get spiral")
 
 list_body = list()
 
+
 def get_spiral(event):
     global list_body
     canvas.destroy()
